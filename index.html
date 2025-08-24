@@ -5,108 +5,34 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>دعوة استقبال د. هيفاء</title>
   <style>
-    body {
-      font-family: 'Tahoma', sans-serif;
-      background: linear-gradient(to bottom right, #fff5f8, #ffe6f0);
-      text-align: center;
-      padding: 20px;
-      color: #4a2c2a;
-      user-select: none;
-      overflow: hidden;
-    }
-    .card {
-      background: #fff;
-      border-radius: 20px;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
-      padding: 30px;
-      max-width: 500px;
-      margin: auto;
-      position: relative;
-      overflow: hidden;
-    }
-    .watermark {
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%) rotate(-30deg);
-      font-size: 48px;
-      color: rgba(0,0,0,0.05);
-      white-space: nowrap;
-      pointer-events: none;
-    }
-    h1 {
-      font-size: 28px;
-      margin-bottom: 10px;
-    }
-    h2 {
-      font-size: 22px;
-      margin: 10px 0;
-    }
-    p {
-      font-size: 18px;
-      margin: 5px 0;
-    }
-    .btn {
-      display: inline-block;
-      margin: 10px;
-      padding: 10px 20px;
-      border-radius: 10px;
-      background: #d6336c;
-      color: #fff;
-      text-decoration: none;
-      font-size: 16px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
-    }
+    body { font-family: 'Tahoma', sans-serif; background: linear-gradient(to bottom right, #fff5f8, #ffe6f0); text-align: center; padding: 20px; color: #4a2c2a; user-select: none; overflow: hidden; }
+    .card { background: #fff; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); padding: 30px; max-width: 560px; margin: auto; position: relative; overflow: hidden; }
+    .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg); font-size: 48px; color: rgba(0,0,0,0.05); white-space: nowrap; pointer-events: none; }
+    h1 { font-size: 28px; margin-bottom: 10px; }
+    h2 { font-size: 22px; margin: 10px 0; }
+    p { font-size: 18px; margin: 5px 0; }
+    .btn { display: inline-block; margin: 10px; padding: 10px 20px; border-radius: 10px; background: #d6336c; color: #fff; text-decoration: none; font-size: 16px; box-shadow: 0 3px 6px rgba(0,0,0,0.2); }
     .btn:hover { background: #b02a57; }
-    #musicControl {
-      margin-top: 15px;
-      cursor: pointer;
-      font-size: 16px;
-      color: #d6336c;
-      border: none;
-      background: transparent;
-    }
-    #intro {
-      font-size: 22px;
-      color: #b02a57;
-      margin-bottom: 20px;
-      min-height: 30px;
-      white-space: nowrap;
-      overflow: hidden;
-      border-right: 3px solid #b02a57;
-      width: 0;
-      animation: typing 4s steps(40, end) forwards, blink 0.8s infinite;
-    }
-    @keyframes typing {
-      from { width: 0; }
-      to { width: 100%; }
-    }
-    @keyframes blink {
-      0%, 100% { border-color: transparent; }
-      50% { border-color: #b02a57; }
-    }
-    .flower {
-      position: fixed;
-      top: -50px;
-      font-size: 24px;
-      animation: fall linear forwards;
-      pointer-events: none;
-    }
-    @keyframes fall {
-      to {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-    #countdown {
-      font-size: 20px;
-      color: #b02a57;
-      margin-top: 15px;
-      font-weight: bold;
-    }
+    #musicControl { margin-top: 15px; cursor: pointer; font-size: 16px; color: #d6336c; border: none; background: transparent; }
+    #intro { font-size: 22px; color: #b02a57; margin-bottom: 20px; min-height: 30px; white-space: nowrap; overflow: hidden; border-right: 3px solid #b02a57; width: 0; animation: typing 4s steps(40, end) forwards, blink 0.8s infinite; }
+    @keyframes typing { from { width: 0; } to { width: 100%; } }
+    @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #b02a57; } }
+    .flower { position: fixed; top: -50px; font-size: 24px; animation: fall linear forwards; pointer-events: none; }
+    @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
+    #countdown { font-size: 20px; color: #b02a57; margin-top: 15px; font-weight: bold; }
+    .notice { margin-top: 16px; background:#fff3f6; border:1px dashed #d6336c55; color:#8a2647; padding:12px 14px; border-radius:12px; font-size:15px; }
+    .muted-hint { font-size: 13px; opacity:.7; margin-top:6px }
+    .gate { position: fixed; inset:0; background: rgba(255, 235, 242, .8); display:none; place-items:center; z-index: 10; }
+    .gate .in { background:#fff; border:1px solid #e9c2cf; box-shadow:0 10px 24px rgba(0,0,0,.12); border-radius:16px; padding:18px 20px; }
   </style>
 </head>
 <body oncontextmenu="return false">
+  <div id="gate" class="gate"><div class="in">
+    <div style="font-size:18px; margin-bottom:8px">مرحباً بك 🌸</div>
+    <div style="font-size:14px; opacity:.8">اضغطي متابعة لتشغيل موسيقى الترحيب</div>
+    <div style="margin-top:12px"><button id="enterBtn" class="btn">متابعة</button></div>
+  </div></div>
+
   <div class="card">
     <div id="intro">بكل حب وسعادة نرحب بكم في هذه الليلة المميزة ✨</div>
     <div class="watermark" id="watermark"></div>
@@ -118,77 +44,64 @@
     <div id="countdown">⏳ جاري حساب الوقت...</div>
     <p id="guestName"></p>
     <p id="inviteCode"></p>
-    <a class="btn" href="https://maps.google.com" target="_blank">📍 عرض الموقع على الخريطة</a>
+
+    <a id="mapBtn" class="btn" href="https://maps.app.goo.gl/821tdEeJKwAxxjn37?g_st=ac" target="_blank">📍 موقع القاعة على الخريطة</a>
     <a class="btn" href="event.ics" download>📅 إضافة للتقويم</a>
     <br>
     <button id="musicControl">🔊 إيقاف الموسيقى</button>
+
+    <div class="notice">برعاية <strong>أم العريس / أم رشاد</strong> 🌸<br>ونؤمن أن <strong>جنة الأطفال منازلهم</strong> 💖</div>
+    <div class="muted-hint">* إذا لم تعمل الموسيقى مباشرة، اضغطي "متابعة" عند ظهور الرسالة أو استخدمي زر التشغيل بالأعلى.</div>
   </div>
 
-  <audio id="bgMusic" loop autoplay>
+  <audio id="bgMusic" loop autoplay muted playsinline>
     <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
   </audio>
 
   <script>
-    const guests = {
-      "RND001": "رند",
-      "NWR002": "النوري",
-      "FTM003": "فطوم",
-      "JWH004": "جواهر",
-      "ABR005": "عبير"
-    };
-
+    const guests = { "RND001":"رند", "NWR002":"النوري", "FTM003":"فطوم", "JWH004":"جواهر", "ABR005":"عبير" };
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('t');
 
     if (guests[token]) {
-      document.getElementById('guestName').innerText = `مرحباً ${guests[token]} 🌸`;
-      document.getElementById('inviteCode').innerText = `رمز دعوتك: ${token}`;
-      document.getElementById('watermark').innerText = guests[token];
+      guestName.textContent = `مرحباً ${guests[token]} 🌸`;
+      inviteCode.textContent = `رمز دعوتك: ${token}`;
+      watermark.textContent = guests[token];
     } else {
       document.querySelector('.card').innerHTML = "<h1>⚠️ الرابط غير صالح</h1>";
     }
 
     const music = document.getElementById('bgMusic');
     const btn = document.getElementById('musicControl');
+    const gate = document.getElementById('gate');
+    const enterBtn = document.getElementById('enterBtn');
+
+    music.play().catch(()=>{ gate.style.display='grid'; });
+
+    function startMusic(){ music.muted = false; music.volume = 0.3; music.play().catch(()=>{}); gate.style.display='none'; }
+
+    document.addEventListener('pointerdown', function once(){ startMusic(); document.removeEventListener('pointerdown', once); }, {once:true});
+    if(enterBtn){ enterBtn.addEventListener('click', startMusic); }
+
     btn.addEventListener('click', () => {
-      if (music.paused) {
-        music.play();
-        btn.innerText = "🔊 إيقاف الموسيقى";
-      } else {
-        music.pause();
-        btn.innerText = "🎵 تشغيل الموسيقى";
-      }
+      if (music.paused) { music.play(); btn.textContent = "🔊 إيقاف الموسيقى"; }
+      else { music.pause(); btn.textContent = "🎵 تشغيل الموسيقى"; }
     });
 
-    function createFlower() {
-      const flower = document.createElement('div');
-      flower.classList.add('flower');
-      flower.innerText = '🌸';
-      flower.style.left = Math.random() * window.innerWidth + 'px';
-      flower.style.animationDuration = (4 + Math.random() * 4) + 's';
-      document.body.appendChild(flower);
-      setTimeout(() => flower.remove(), 8000);
-    }
+    function createFlower(){ const f=document.createElement('div'); f.className='flower'; f.textContent='🌸'; f.style.left=Math.random()*window.innerWidth+'px'; f.style.animationDuration=(4+Math.random()*4)+'s'; document.body.appendChild(f); setTimeout(()=>f.remove(),8000); }
     setInterval(createFlower, 1000);
 
-    // Countdown timer
     const countdownEl = document.getElementById('countdown');
     const eventDate = new Date("2025-09-05T20:00:00").getTime();
-
     setInterval(() => {
-      const now = new Date().getTime();
+      const now = Date.now();
       const distance = eventDate - now;
-
-      if (distance <= 0) {
-        countdownEl.innerText = "🎉 بدأ الحفل!";
-      } else {
-        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-        countdownEl.innerText = `⏳ يتبقى ${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
-      }
+      if (distance <= 0) { countdownEl.innerText = "🎉 بدأ الحفل!"; return; }
+      const d = Math.floor(distance / 86400000);
+      const h = Math.floor((distance % 86400000) / 3600000);
+      const m = Math.floor((distance % 3600000) / 60000);
+      const s = Math.floor((distance % 60000) / 1000);
+      countdownEl.innerText = `⏳ يتبقى ${d} يوم ${h} ساعة ${m} دقيقة ${s} ثانية`;
     }, 1000);
   </script>
 </body>
