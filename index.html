@@ -8,8 +8,8 @@
   <meta http-equiv="Expires" content="0" />
   <title>دعوة استقبال د. هيفاء</title>
   <style>
-    body { font-family: 'Tahoma', sans-serif; background: linear-gradient(to bottom right, #fff5f8, #ffe6f0); text-align: center; padding: 20px; color: #4a2c2a; user-select: none; overflow: hidden; }
-    .card { background: #fff; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); padding: 30px; max-width: 560px; margin: auto; position: relative; overflow: hidden; }
+    body { font-family: 'Tahoma', sans-serif; background: linear-gradient(to bottom right, #fff5f8, #ffe6f0); text-align: center; padding: 20px; color: #4a2c2a; user-select: none; overflow-y: auto; }
+    .card { background: #fff; border-radius: 20px; box-shadow: 0 4px 15px rgba(0,0,0,0.2); padding: 30px; max-width: 560px; margin: auto; position: relative; overflow: visible; }
     .watermark { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg); font-size: 48px; color: rgba(0,0,0,0.05); white-space: nowrap; pointer-events: none; }
     h1 { font-size: 28px; margin-bottom: 10px; }
     h2 { font-size: 22px; margin: 10px 0; }
@@ -17,13 +17,11 @@
     .btn { display: inline-block; margin: 10px; padding: 10px 20px; border-radius: 10px; background: #d6336c; color: #fff; text-decoration: none; font-size: 16px; box-shadow: 0 3px 6px rgba(0,0,0,0.2); }
     .btn:hover { background: #b02a57; }
     #musicControl { margin-top: 15px; cursor: pointer; font-size: 16px; color: #d6336c; border: none; background: transparent; }
-    #intro { font-size: 22px; color: #b02a57; margin-bottom: 20px; min-height: 30px; white-space: nowrap; overflow: hidden; border-right: 3px solid #b02a57; width: 0; animation: typing 4s steps(40, end) forwards, blink 0.8s infinite; }
-    @keyframes typing { from { width: 0; } to { width: 100%; } }
-    @keyframes blink { 0%, 100% { border-color: transparent; } 50% { border-color: #b02a57; } }
+    #intro { font-size: 20px; color: #b02a57; margin-bottom: 20px; display:block; white-space: normal; border-right:none; animation:none; }
     .flower { position: fixed; top: -50px; font-size: 24px; animation: fall linear forwards; pointer-events: none; }
     @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
     #countdown { font-size: 20px; color: #b02a57; margin-top: 15px; font-weight: bold; }
-    .notice { margin-top: 16px; background:#fff3f6; border:1px dashed #d6336c55; color:#8a2647; padding:12px 14px; border-radius:12px; font-size:15px; }
+    .notice { margin-top: 25px; background:#ffe0eb; border:2px solid #d6336c; color:#6d1433; padding:16px 18px; border-radius:14px; font-size:17px; line-height:1.7; font-weight:bold; box-shadow:0 4px 10px rgba(0,0,0,0.15); }
     .muted-hint { font-size: 13px; opacity:.7; margin-top:6px }
     .gate { position: fixed; inset:0; background: rgba(255, 235, 242, .8); display:none; place-items:center; z-index: 10; }
     .gate .in { background:#fff; border:1px solid #e9c2cf; box-shadow:0 10px 24px rgba(0,0,0,.12); border-radius:16px; padding:18px 20px; }
@@ -53,7 +51,10 @@
     <br>
     <button id="musicControl">🔊 إيقاف الموسيقى</button>
 
-    <div class="notice">برعاية <strong>أم العريس / أم رشاد</strong> 🌸<br>ونؤمن أن <strong>جنة الأطفال منازلهم</strong> 💖</div>
+    <div class="notice">
+      ✨ برعاية <strong>أم العريس / أم رشاد</strong> ✨<br>
+      🌸 ونؤمن أن <strong>جنة الأطفال منازلهم</strong> 💖
+    </div>
     <div class="muted-hint">* إذا لم تعمل الموسيقى مباشرة، اضغطي "متابعة" عند ظهور الرسالة أو استخدمي زر التشغيل بالأعلى.</div>
   </div>
 
@@ -72,9 +73,6 @@
         location.replace(location.pathname + '?' + p.toString());
       }
     })();
-
-    // ✅ يظهر لك فقط (للمتابعة التقنية)
-    alert("📌 نسخة الدعوة الحالية: v" + VERSION);
 
     const guests = { "RND001":"رند", "NWR002":"النوري", "FTM003":"فطوم", "JWH004":"جواهر", "ABR005":"عبير" };
     const urlParams = new URLSearchParams(window.location.search);
