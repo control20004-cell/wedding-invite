@@ -46,7 +46,8 @@
     <p id="inviteCode"></p>
 
     <a id="mapBtn" class="btn" href="https://maps.app.goo.gl/821tdEeJKwAxxjn37?g_st=ac" target="_blank">📍 موقع القاعة على الخريطة</a>
-    <a class="btn" href="event.ics" download>📅 إضافة للتقويم</a>
+    <!-- مضاف كسر الكاش هنا -->
+    <a id="calendarBtn" class="btn" href="event.ics" download>📅 إضافة للتقويم</a>
     <br>
     <button id="musicControl">🔊 إيقاف الموسيقى</button>
 
@@ -54,8 +55,9 @@
     <div class="muted-hint">* إذا لم تعمل الموسيقى مباشرة، اضغطي "متابعة" عند ظهور الرسالة أو استخدمي زر التشغيل بالأعلى.</div>
   </div>
 
+  <!-- مضاف كسر الكاش هنا -->
   <audio id="bgMusic" loop autoplay muted playsinline>
-    <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
+    <source id="musicSource" src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
   </audio>
 
   <script>
@@ -76,6 +78,12 @@
     const gate = document.getElementById('gate');
     const enterBtn = document.getElementById('enterBtn');
 
+    // 🔹 إضافة كسر الكاش لملف الصوت وملف التقويم
+    const bust = Date.now();
+    document.getElementById("musicSource").src += "?v=" + bust;
+    document.getElementById("calendarBtn").href += "?v=" + bust;
+
+    music.load();
     music.play().catch(()=>{ gate.style.display='grid'; });
 
     function startMusic(){ music.muted = false; music.volume = 0.3; music.play().catch(()=>{}); gate.style.display='none'; }
@@ -106,3 +114,4 @@
   </script>
 </body>
 </html>
+
