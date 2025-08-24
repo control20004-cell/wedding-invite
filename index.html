@@ -28,7 +28,7 @@
     .muted-hint { font-size: 13px; opacity:.7; margin-top:6px }
     .gate { position: fixed; inset:0; background: rgba(255, 235, 242, .8); display:none; place-items:center; z-index: 10; }
     .gate .in { background:#fff; border:1px solid #e9c2cf; box-shadow:0 10px 24px rgba(0,0,0,.12); border-radius:16px; padding:18px 20px; }
-    .version { font-size: 12px; color:#999; margin-top:12px; }
+    .version { margin-top:15px; font-size:12px; color:#999; }
   </style>
 </head>
 <body oncontextmenu="return false">
@@ -57,7 +57,7 @@
 
     <div class="notice">برعاية <strong>أم العريس / أم رشاد</strong> 🌸<br>ونؤمن أن <strong>جنة الأطفال منازلهم</strong> 💖</div>
     <div class="muted-hint">* إذا لم تعمل الموسيقى مباشرة، اضغطي "متابعة" عند ظهور الرسالة أو استخدمي زر التشغيل بالأعلى.</div>
-    <div class="version" id="version"></div>
+    <div class="version">الإصدار: v3</div>
   </div>
 
   <audio id="bgMusic" loop autoplay muted playsinline>
@@ -68,12 +68,10 @@
     // ====== إصدار الصفحة (عدّليه إلى 4,5.. عند كل نشر لكسر الكاش) ======
     const VERSION = '3';
 
-    // إضافة باراميتر v تلقائياً للرابط إذا لم يطابق الإصدار الحالي
     (function ensureFresh(){
       const p = new URLSearchParams(location.search);
       if(p.get('v') !== VERSION){
-        // نحافظ على باراميتر t الخاص بالمدعو ونضيف v
-        if(!p.get('t')){ /* لا شيء */ }
+        if(!p.get('t')){}
         p.set('v', VERSION);
         location.replace(location.pathname + '?' + p.toString());
       }
@@ -96,7 +94,6 @@
     const gate = document.getElementById('gate');
     const enterBtn = document.getElementById('enterBtn');
 
-    // 🔹 كسر الكاش للملفات الخارجية باستخدام رقم الإصدار
     const ms = document.getElementById('musicSource');
     ms.src = ms.src.split('?')[0] + '?v=' + VERSION;
     const cal = document.getElementById('calendarBtn');
@@ -133,5 +130,3 @@
   </script>
 </body>
 </html>
-
-
