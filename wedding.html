@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>دعوة استقبال د. هيفاء</title>
+  <style>
+    body {
+      font-family: 'Tahoma', sans-serif;
+      background: linear-gradient(to bottom right, #fff5f8, #ffe6f0);
+      text-align: center;
+      padding: 20px;
+      color: #4a2c2a;
+      user-select: none;
+      overflow: hidden;
+    }
+    .card {
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+      padding: 30px;
+      max-width: 500px;
+      margin: auto;
+      position: relative;
+      overflow: hidden;
+    }
+    .watermark {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 48px;
+      color: rgba(0,0,0,0.05);
+      white-space: nowrap;
+      pointer-events: none;
+    }
+    h1 {
+      font-size: 28px;
+      margin-bottom: 10px;
+    }
+    h2 {
+      font-size: 22px;
+      margin: 10px 0;
+    }
+    p {
+      font-size: 18px;
+      margin: 5px 0;
+    }
+    .btn {
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background: #d6336c;
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
+      box-shadow: 0 3px 6px rgba(0,0,0,0.2);
+    }
+    .btn:hover { background: #b02a57; }
+    #musicControl {
+      margin-top: 15px;
+      cursor: pointer;
+      font-size: 16px;
+      color: #d6336c;
+      border: none;
+      background: transparent;
+    }
+    #intro {
+      font-size: 22px;
+      color: #b02a57;
+      margin-bottom: 20px;
+      min-height: 30px;
+      white-space: nowrap;
+      overflow: hidden;
+      border-right: 3px solid #b02a57;
+      width: 0;
+      animation: typing 4s steps(40, end) forwards, blink 0.8s infinite;
+    }
+    @keyframes typing {
+      from { width: 0; }
+      to { width: 100%; }
+    }
+    @keyframes blink {
+      0%, 100% { border-color: transparent; }
+      50% { border-color: #b02a57; }
+    }
+    .flower {
+      position: fixed;
+      top: -50px;
+      font-size: 24px;
+      animation: fall linear forwards;
+      pointer-events: none;
+    }
+    @keyframes fall {
+      to {
+        transform: translateY(110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+    #countdown {
+      font-size: 20px;
+      color: #b02a57;
+      margin-top: 15px;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body oncontextmenu="return false">
+  <div class="card">
+    <div id="intro">بكل حب وسعادة نرحب بكم في هذه الليلة المميزة ✨</div>
+    <div class="watermark" id="watermark"></div>
+    <h1>تشرفنا بدعوتكم</h1>
+    <h2>إلى حفل الاستقبال</h2>
+    <h1>د. هيفاء</h1>
+    <p>وذلك يوم <b>٥ سبتمبر</b></p>
+    <p>تبدأ الحفلة الساعة <b>٨ مساءً</b></p>
+    <div id="countdown">⏳ جاري حساب الوقت...</div>
+    <p id="guestName"></p>
+    <p id="inviteCode"></p>
+    <a class="btn" href="https://maps.google.com" target="_blank">📍 عرض الموقع على الخريطة</a>
+    <a class="btn" href="event.ics" download>📅 إضافة للتقويم</a>
+    <br>
+    <button id="musicControl">🔊 إيقاف الموسيقى</button>
+  </div>
+
+  <audio id="bgMusic" loop autoplay>
+    <source src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    const guests = {
+      "RND001": "رند",
+      "NWR002": "النوري",
+      "FTM003": "فطوم",
+      "JWH004": "جواهر",
+      "ABR005": "عبير"
+    };
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const token = urlParams.get('t');
+
+    if (guests[token]) {
+      document.getElementById('guestName').innerText = `مرحباً ${guests[token]} 🌸`;
+      document.getElementById('inviteCode').innerText = `رمز دعوتك: ${token}`;
+      document.getElementById('watermark').innerText = guests[token];
+    } else {
+      document.querySelector('.card').innerHTML = "<h1>⚠️ الرابط غير صالح</h1>";
+    }
+
+    const music = document.getElementById('bgMusic');
+    const btn = document.getElementById('musicControl');
+    btn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play();
+        btn.innerText = "🔊 إيقاف الموسيقى";
+      } else {
+        music.pause();
+        btn.innerText = "🎵 تشغيل الموسيقى";
+      }
+    });
+
+    function createFlower() {
+      const flower = document.createElement('div');
+      flower.classList.add('flower');
+      flower.innerText = '🌸';
+      flower.style.left = Math.random() * window.innerWidth + 'px';
+      flower.style.animationDuration = (4 + Math.random() * 4) + 's';
+      document.body.appendChild(flower);
+      setTimeout(() => flower.remove(), 8000);
+    }
+    setInterval(createFlower, 1000);
+
+    // Countdown timer
+    const countdownEl = document.getElementById('countdown');
+    const eventDate = new Date("2025-09-05T20:00:00").getTime();
+
+    setInterval(() => {
+      const now = new Date().getTime();
+      const distance = eventDate - now;
+
+      if (distance <= 0) {
+        countdownEl.innerText = "🎉 بدأ الحفل!";
+      } else {
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        countdownEl.innerText = `⏳ يتبقى ${days} يوم ${hours} ساعة ${minutes} دقيقة ${seconds} ثانية`;
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
