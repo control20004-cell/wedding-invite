@@ -3,6 +3,10 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- تلميحات عدم التخزين المؤقت للمتصفحات/الوسائط -->
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
+  <meta http-equiv="Expires" content="0" />
   <title>دعوة استقبال د. هيفاء</title>
   <style>
     body { font-family: 'Tahoma', sans-serif; background: linear-gradient(to bottom right, #fff5f8, #ffe6f0); text-align: center; padding: 20px; color: #4a2c2a; user-select: none; overflow: hidden; }
@@ -24,6 +28,7 @@
     .muted-hint { font-size: 13px; opacity:.7; margin-top:6px }
     .gate { position: fixed; inset:0; background: rgba(255, 235, 242, .8); display:none; place-items:center; z-index: 10; }
     .gate .in { background:#fff; border:1px solid #e9c2cf; box-shadow:0 10px 24px rgba(0,0,0,.12); border-radius:16px; padding:18px 20px; }
+    .version { font-size: 12px; color:#999; margin-top:12px; }
   </style>
 </head>
 <body oncontextmenu="return false">
@@ -46,21 +51,34 @@
     <p id="inviteCode"></p>
 
     <a id="mapBtn" class="btn" href="https://maps.app.goo.gl/821tdEeJKwAxxjn37?g_st=ac" target="_blank">📍 موقع القاعة على الخريطة</a>
-    <!-- مضاف كسر الكاش هنا -->
     <a id="calendarBtn" class="btn" href="event.ics" download>📅 إضافة للتقويم</a>
     <br>
     <button id="musicControl">🔊 إيقاف الموسيقى</button>
 
     <div class="notice">برعاية <strong>أم العريس / أم رشاد</strong> 🌸<br>ونؤمن أن <strong>جنة الأطفال منازلهم</strong> 💖</div>
     <div class="muted-hint">* إذا لم تعمل الموسيقى مباشرة، اضغطي "متابعة" عند ظهور الرسالة أو استخدمي زر التشغيل بالأعلى.</div>
+    <div class="version" id="version"></div>
   </div>
 
-  <!-- مضاف كسر الكاش هنا -->
   <audio id="bgMusic" loop autoplay muted playsinline>
     <source id="musicSource" src="https://www.bensound.com/bensound-music/bensound-slowmotion.mp3" type="audio/mpeg">
   </audio>
 
   <script>
+    // ====== إصدار الصفحة (عدّليه إلى 4,5.. عند كل نشر لكسر الكاش) ======
+    const VERSION = '3';
+
+    // إضافة باراميتر v تلقائياً للرابط إذا لم يطابق الإصدار الحالي
+    (function ensureFresh(){
+      const p = new URLSearchParams(location.search);
+      if(p.get('v') !== VERSION){
+        // نحافظ على باراميتر t الخاص بالمدعو ونضيف v
+        if(!p.get('t')){ /* لا شيء */ }
+        p.set('v', VERSION);
+        location.replace(location.pathname + '?' + p.toString());
+      }
+    })();
+
     const guests = { "RND001":"رند", "NWR002":"النوري", "FTM003":"فطوم", "JWH004":"جواهر", "ABR005":"عبير" };
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('t');
@@ -78,10 +96,11 @@
     const gate = document.getElementById('gate');
     const enterBtn = document.getElementById('enterBtn');
 
-    // 🔹 إضافة كسر الكاش لملف الصوت وملف التقويم
-    const bust = Date.now();
-    document.getElementById("musicSource").src += "?v=" + bust;
-    document.getElementById("calendarBtn").href += "?v=" + bust;
+    // 🔹 كسر الكاش للملفات الخارجية باستخدام رقم الإصدار
+    const ms = document.getElementById('musicSource');
+    ms.src = ms.src.split('?')[0] + '?v=' + VERSION;
+    const cal = document.getElementById('calendarBtn');
+    cal.href = cal.href.split('?')[0] + '?v=' + VERSION;
 
     music.load();
     music.play().catch(()=>{ gate.style.display='grid'; });
@@ -114,4 +133,5 @@
   </script>
 </body>
 </html>
+
 
