@@ -116,7 +116,36 @@
       if(p.get('v') !== VERSION){ p.set('v', VERSION); location.replace(location.pathname + '?' + p.toString()); }
     })();
 
-    const guests = { "RND001":"رند", "NWR002":"النوري", "FTM003":"فطوم", "JWH004":"جواهر", "ABR005":"عبير", "DBSH006":"دبشه"  };
+   const guests = { 
+  "RND001":"رند", 
+  "NWR002":"النوري", 
+  "FTM003":"فطوم", 
+  "JWH004":"جواهر", 
+  "ABR005":"عبير", 
+  "DBSH006":"دبشه",
+  "AMA021":"ام عمار",
+  "LYN022":"ليان",
+  "RBA023":"رابعه",
+  "LON024":"الشيخه لونا",
+  "AKR025":"الغالية ام اكرم",
+  "MNL026":"منال",
+  "AHD027":"عهود",
+  "RGD028":"رغد",
+  "BAS029":"بشاير",
+  "SWS030":"سوسن",
+  "MEE031":"مي",
+  "AND032":"العنود",
+  "DAN033":"دان",
+  "SLA034":"الغاليه ام صلاح",
+  "SAL035":"سالي",
+  "KHD036":"خلود",
+  "HAN037":"حنان",
+  "SAR038":"ساره",
+  "YAS039":"الغالية ام ياسر",
+  "NJL040":"نجلاء",
+  "SLW041":"سلوى"
+};
+
     const urlParams = new URLSearchParams(window.location.search);
     const token = urlParams.get('t');
 
@@ -169,6 +198,7 @@
   </script>
 </body>
 </html>
+
 
 
 
