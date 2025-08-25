@@ -11,7 +11,7 @@
     :root { --rose:#d6336c; --rose-dark:#b02a57; }
     html, body { height:100%; margin:0; padding:0; }
 
-    /* خلفية بصورة مع دعم AVIF + JPG (fallback) */
+    /* خلفية بصورة مع دعم AVIF + JPG (fallback)، وتغطية بيضاء مخففة لإظهار الخلفية */
     body{
       font-family:'Tahoma',sans-serif;
       text-align:center;
@@ -21,36 +21,41 @@
       overflow-y:auto;
       -webkit-overflow-scrolling:touch;
 
-      /* fallback فوري لـ JPG */
+      /* ↓ خفّضنا الأبيض إلى 0.85 */
       background:
-        linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.93)),
-        url('wedding-background.jpg?v=10') center/cover no-repeat fixed;
+        linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
+        url('wedding-background.jpg?v=11') center/cover no-repeat fixed;
 
-      /* المتصفحات الحديثة تختار AVIF تلقائيًا */
       background-image:
-        linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.93)),
+        linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
         image-set(
-          url('wedding-background.avif?v=10') type("image/avif"),
-          url('wedding-background.jpg?v=10')  type("image/jpeg")
+          url('wedding-background.avif?v=11') type("image/avif"),
+          url('wedding-background.jpg?v=11')  type("image/jpeg")
         );
     }
 
+    /* البطاقة شبه شفافة مع تأثير زجاج خفيف لإظهار الخلفية داخل الإطار بدون التأثير على قراءة النص */
     .card{
-      background:#fff;
+      background: rgba(255,255,255,0.88);
       border-radius:20px;
-      box-shadow:0 4px 15px rgba(0,0,0,0.2);
+      box-shadow:0 8px 20px rgba(0,0,0,0.15);
       padding:30px;
       max-width:560px;
       margin:auto;
       position:relative;
       overflow:visible;
+
+      backdrop-filter: blur(2px) saturate(1.05);
+      -webkit-backdrop-filter: blur(2px) saturate(1.05);
     }
+
     .watermark{
       position:absolute; top:50%; left:50%;
       transform:translate(-50%,-50%) rotate(-30deg);
       font-size:48px; color:rgba(0,0,0,0.05);
       white-space:nowrap; pointer-events:none;
     }
+
     h1{ font-size:28px; margin:10px 0; color:#b02a57; }
     h2{ font-size:22px; margin:10px 0; color:#6d1433; }
     p{ font-size:18px; margin:5px 0; }
@@ -61,6 +66,7 @@
       text-decoration:none; font-size:16px; box-shadow:0 3px 6px rgba(0,0,0,0.2);
     }
     .btn:hover{ background:var(--rose-dark); }
+
     #musicControl{ margin-top:15px; cursor:pointer; font-size:16px; color:var(--rose); border:none; background:transparent; }
     #intro{ font-size:20px; color:var(--rose); margin-bottom:20px; display:block; white-space:normal; }
 
@@ -123,7 +129,7 @@
 
   <script>
     /* ارفعي الرقم كل مرة تحدثين فيها التصميم لكسر الكاش */
-    const VERSION = '10';
+    const VERSION = '11';
 
     // تأكيد تحميل الإصدار الجديد
     (function ensureFresh(){
@@ -199,7 +205,7 @@
     /* زر إضافة للتقويم (ICS) */
     (function setupCalendar(){
       const btnCal = document.getElementById('calendarBtn');
-      const title = 'حفل استقبال عروستنا هيفاء';
+      const title = 'حفل استقبال د. هيفاء';
       const start = '20250905T200000';
       const end   = '20250905T230000';
       const VENUE = 'فندق القصيبي (قاعة شوق)';
