@@ -3,14 +3,13 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- منع التخزين المؤقت قدر الإمكان -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
   <title>دعوة استقبال عروستنا: هيفاء</title>
   <style>
     :root { --rose:#d6336c; --rose-dark:#b02a57; }
-    html, body { height:100%; margin:0; }
+    html, body { height:100%; margin:0; padding:0; }
 
     body {
       font-family: 'Tahoma', sans-serif;
@@ -21,19 +20,21 @@
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
 
-      /* ✅ الخلفية مع دعم AVIF + JPG */
-      background: linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.93)),
-                  url('wedding-background.jpg') center/cover no-repeat fixed;
+      /* ✅ الخلفية مع fallback */
+      background:
+        linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.93)),
+        url('wedding-background.jpg?v=9') center/cover no-repeat fixed;
 
-      background-image: linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.93)),
-                        image-set(
-                          url('wedding-background.avif') type("image/avif"),
-                          url('wedding-background.jpg') type("image/jpeg")
-                        );
+      background-image:
+        linear-gradient(rgba(255,255,255,0.93), rgba(255,255,255,0.93)),
+        image-set(
+          url('wedding-background.avif?v=9') type("image/avif"),
+          url('wedding-background.jpg?v=9') type("image/jpeg")
+        );
     }
 
     .card {
-      background: #fffdfdcc;
+      background: #fff;
       border-radius: 20px;
       box-shadow: 0 4px 15px rgba(0,0,0,0.2);
       padding: 30px;
@@ -42,22 +43,48 @@
       position: relative;
       overflow: visible;
     }
+
     .watermark {
-      position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%) rotate(-30deg);
-      font-size: 48px; color: rgba(0,0,0,0.05); white-space: nowrap; pointer-events: none;
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%) rotate(-30deg);
+      font-size: 48px;
+      color: rgba(0,0,0,0.05);
+      white-space: nowrap;
+      pointer-events: none;
     }
-    h1 { font-size: 28px; margin-bottom: 10px; color:#b02a57; }
-    h2 { font-size: 22px; margin: 10px 0; color:#6d1433; }
+
+    h1 { font-size: 28px; margin-bottom: 10px; }
+    h2 { font-size: 22px; margin: 10px 0; }
     p { font-size: 18px; margin: 5px 0; }
+
     .btn {
-      display: inline-block; margin: 10px; padding: 10px 20px; border-radius: 10px;
-      background: var(--rose); color: #fff; text-decoration: none; font-size: 16px;
+      display: inline-block;
+      margin: 10px;
+      padding: 10px 20px;
+      border-radius: 10px;
+      background: var(--rose);
+      color: #fff;
+      text-decoration: none;
+      font-size: 16px;
       box-shadow: 0 3px 6px rgba(0,0,0,0.2);
     }
     .btn:hover { background: var(--rose-dark); }
-    #musicControl { margin-top: 15px; cursor: pointer; font-size: 16px; color: var(--rose); border: none; background: transparent; }
 
-    #intro { font-size: 20px; color: var(--rose); margin-bottom: 20px; display:block; white-space: normal; border-right:none; animation:none; }
+    #musicControl {
+      margin-top: 15px;
+      cursor: pointer;
+      font-size: 16px;
+      color: var(--rose);
+      border: none;
+      background: transparent;
+    }
+
+    #intro {
+      font-size: 20px; color: var(--rose);
+      margin-bottom: 20px; display:block;
+      white-space: normal; border-right:none; animation:none;
+    }
 
     .flower { position: fixed; top: -50px; font-size: 24px; animation: fall linear forwards; pointer-events: none; }
     @keyframes fall { to { transform: translateY(110vh) rotate(360deg); opacity: 0; } }
@@ -65,10 +92,11 @@
     #countdown { font-size: 20px; color: var(--rose); margin-top: 15px; font-weight: bold; }
 
     .notice {
-      margin-top: 25px; background:#ffe0ebdd; border:2px solid var(--rose); color:#6d1433;
+      margin-top: 25px; background:#ffe0eb; border:2px solid var(--rose); color:#6d1433;
       padding:16px 18px; border-radius:14px; font-size:17px; line-height:1.7; font-weight:bold;
       box-shadow:0 4px 10px rgba(0,0,0,0.15);
     }
+
     .muted-hint { font-size: 13px; opacity:.7; margin-top:6px }
 
     .gate { position: fixed; inset:0; background: rgba(255, 235, 242, .8); display:none; place-items:center; z-index: 10; }
@@ -76,7 +104,6 @@
   </style>
 </head>
 <body oncontextmenu="return false">
-  <!-- شاشة ترحيب -->
   <div id="gate" class="gate"><div class="in">
     <div style="font-size:18px; margin-bottom:8px">مرحباً بك 🌸</div>
     <div style="font-size:14px; opacity:.8">اضغطي متابعة لتشغيل موسيقى الترحيب</div>
@@ -89,9 +116,8 @@
     <h1>تشرفنا بدعوتكم</h1>
     <h2>إلى حفل الاستقبال</h2>
     <h1>عروستنا: هيفاء</h1>
-    <p>وذلك يوم <b>٥ سبتمبر</b>، تبدأ الحفلة الساعة <b>٨ مساءً</b></p>
-    <p>📍 في <b>فندق القصيبي (قاعة شوق)</b></p>
-
+    <p>وذلك يوم <b>٥ سبتمبر</b></p>
+    <p>تبدأ الحفلة الساعة <b>٨ مساءً</b> في فندق القصيبي (قاعة شوق)</p>
     <div id="countdown">⏳ جاري حساب الوقت...</div>
     <p id="guestName"></p>
     <p id="inviteCode"></p>
@@ -105,7 +131,7 @@
       ✨ برعاية <strong>أم العريس / أم رشاد</strong> ✨<br>
       🌸 ونؤمن أن <strong>جنة الأطفال منازلهم</strong> 💖
     </div>
-    <div class="muted-hint">* إذا لم تعمل الموسيقى مباشرة، اضغطي "متابعة".</div>
+    <div class="muted-hint">* إذا لم تعمل الموسيقى مباشرة، اضغطي "متابعة" عند ظهور الرسالة أو استخدمي زر التشغيل بالأعلى.</div>
   </div>
 
   <audio id="bgMusic" loop autoplay muted playsinline>
@@ -113,16 +139,19 @@
   </audio>
 
   <script>
-    const VERSION = '7';
+    const VERSION = '9';
+
     (function ensureFresh(){
       const p = new URLSearchParams(location.search);
       if(p.get('v') !== VERSION){ p.set('v', VERSION); location.replace(location.pathname + '?' + p.toString()); }
     })();
 
-    const guests = { "RND001":"رند","NWR002":"النوري","FTM003":"فطوم","JWH004":"جواهر","ABR005":"عبير","DBSH006":"دبشه",
-      "AMA021":"ام عمار","LYN022":"ليان","RBA023":"رابعه","LON024":"الشيخه لونا","AKR025":"الغالية ام اكرم",
-      "MNL026":"منال","AHD027":"عهود","RGD028":"رغد","BAS029":"بشاير","SWS030":"سوسن","MEE031":"مي",
-      "AND032":"العنود","DAN033":"دان","SLA034":"الغاليه ام صلاح","SAL035":"سالي","KHD036":"خلود",
+    const guests = { 
+      "RND001":"رند","NWR002":"النوري","FTM003":"فطوم","JWH004":"جواهر","ABR005":"عبير",
+      "DBSH006":"دبشه","AMA021":"ام عمار","LYN022":"ليان","RBA023":"رابعه",
+      "LON024":"الشيخه لونا","AKR025":"الغالية ام اكرم","MNL026":"منال","AHD027":"عهود",
+      "RGD028":"رغد","BAS029":"بشاير","SWS030":"سوسن","MEE031":"مي","AND032":"العنود",
+      "DAN033":"دان","SLA034":"الغاليه ام صلاح","SAL035":"سالي","KHD036":"خلود",
       "HAN037":"حنان","SAR038":"ساره","YAS039":"الغالية ام ياسر","NJL040":"نجلاء","SLW041":"سلوى"
     };
 
@@ -172,51 +201,6 @@
       const s = Math.floor((distance % 60000) / 1000);
       countdownEl.innerText = `⏳ يتبقى ${d} يوم ${h} ساعة ${m} دقيقة ${s} ثانية`;
     }, 1000);
-
-    (function setupCalendar(){
-      const btnCal = document.getElementById('calendarBtn');
-      const title = 'حفل استقبال د. هيفاء';
-      const start = '20250905T200000';
-      const end   = '20250905T230000';
-      const VENUE = 'فندق القصيبي (قاعة شوق)';
-      const map   = 'https://maps.app.goo.gl/821tdEeJKwAxxjn37?g_st=ac';
-
-      const guestLabel = guests[token] ? `مرحباً ${guests[token]} 🌸` : 'دعوة خاصة';
-      const codeLabel  = token ? `رمز دعوتك: ${token}` : '';
-      const description = [guestLabel, codeLabel, `المكان: ${VENUE}`, 'يرجى عدم مشاركة الرابط.', 'برعاية أم العريس / أم رشاد', `الخريطة: ${map}`].filter(Boolean).join('\\n');
-
-      function icsLine(s){ return s + '\\r\\n'; }
-
-      const ics =
-        icsLine('BEGIN:VCALENDAR') +
-        icsLine('VERSION:2.0') +
-        icsLine('PRODID:-//Wedding Invite//Haifa//AR') +
-        icsLine('CALSCALE:GREGORIAN') +
-        icsLine('METHOD:PUBLISH') +
-        icsLine('BEGIN:VEVENT') +
-        icsLine(`UID:${Date.now()}-${Math.random().toString(16).slice(2)}@haifa`) +
-        icsLine('DTSTAMP:' + new Date().toISOString().replace(/[-:]/g,'').split('.')[0] + 'Z') +
-        icsLine('DTSTART:' + start + 'Z') +
-        icsLine('DTEND:'   + end   + 'Z') +
-        icsLine('SUMMARY:' + title) +
-        icsLine('DESCRIPTION:' + description.replace(/\\n/g,'\\n')) +
-        icsLine('LOCATION:' + VENUE) +
-        icsLine('END:VEVENT') +
-        icsLine('END:VCALENDAR');
-
-      btnCal.addEventListener('click', (e) => {
-        e.preventDefault();
-        const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
-        const url  = URL.createObjectURL(blob);
-        const a    = document.createElement('a');
-        a.href = url;
-        a.download = `دعوة-هيفاء-${token || 'guest'}.ics`;
-        document.body.appendChild(a);
-        a.click();
-        URL.revokeObjectURL(url);
-        a.remove();
-      });
-    })();
   </script>
 </body>
 </html>
