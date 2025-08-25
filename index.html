@@ -3,92 +3,131 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- no-cache -->
   <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
   <meta http-equiv="Pragma" content="no-cache" />
   <meta http-equiv="Expires" content="0" />
+
   <title>دعوة استقبال عروستنا: هيفاء</title>
+
+  <!-- خطوط عربية حديثة -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=El+Messiri:wght@600;700&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+
   <style>
-    :root { --rose:#d6336c; --rose-dark:#b02a57; }
+    :root {
+      --rose:#d6336c; 
+      --rose-dark:#b02a57;
+      --ink:#522741;
+      --gold:#d4af37;
+    }
     html, body { height:100%; margin:0; padding:0; }
-
-    /* خلفية بصورة مع دعم AVIF + JPG (fallback)، وتغطية بيضاء مخففة لإظهار الخلفية */
     body{
-      font-family:'Tahoma',sans-serif;
+      font-family: "Tajawal", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+      color: var(--ink);
       text-align:center;
-      padding:20px;
-      color:#4a2c2a;
-      user-select:none;
-      overflow-y:auto;
-      -webkit-overflow-scrolling:touch;
-
-      /* ↓ خفّضنا الأبيض إلى 0.85 */
+      padding: 22px;
       background:
-        linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-        url('wedding-background.jpg?v=11') center/cover no-repeat fixed;
-
-      background-image:
-        linear-gradient(rgba(255,255,255,0.85), rgba(255,255,255,0.85)),
-        image-set(
-          url('wedding-background.avif?v=11') type("image/avif"),
-          url('wedding-background.jpg?v=11')  type("image/jpeg")
-        );
+        radial-gradient(1200px 600px at 50% -10%, #fff, #f9f2f6 60%, #f3e9f1);
+      overflow-y:auto;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      -webkit-overflow-scrolling: touch;
+      user-select:none;
     }
 
-    /* البطاقة شبه شفافة مع تأثير زجاج خفيف لإظهار الخلفية داخل الإطار بدون التأثير على قراءة النص */
+    /* الكرت مع صورة الخلفية داخله */
     .card{
-      background: rgba(255,255,255,0.88);
-      border-radius:20px;
-      box-shadow:0 8px 20px rgba(0,0,0,0.15);
-      padding:30px;
-      max-width:560px;
-      margin:auto;
-      position:relative;
-      overflow:visible;
-
-      backdrop-filter: blur(2px) saturate(1.05);
-      -webkit-backdrop-filter: blur(2px) saturate(1.05);
+      background:
+        linear-gradient(rgba(255,255,255,0.90), rgba(255,255,255,0.92)),
+        url('wedding1-background.jpg?v=12') center/cover no-repeat;
+      border-radius: 22px;
+      box-shadow: 0 10px 28px rgba(118, 65, 92, 0.18);
+      padding: 34px 26px;
+      max-width: 620px;
+      margin: auto;
+      position: relative;
+      overflow: visible;
+      backdrop-filter: blur(1px) saturate(1.03);
+      -webkit-backdrop-filter: blur(1px) saturate(1.03);
     }
 
     .watermark{
-      position:absolute; top:50%; left:50%;
-      transform:translate(-50%,-50%) rotate(-30deg);
-      font-size:48px; color:rgba(0,0,0,0.05);
-      white-space:nowrap; pointer-events:none;
+      position:absolute; inset:auto auto 18% 50%;
+      transform: translateX(-50%) rotate(-28deg);
+      font-size:56px; color:rgba(0,0,0,.045); white-space:nowrap; pointer-events:none;
     }
 
-    h1{ font-size:28px; margin:10px 0; color:#b02a57; }
-    h2{ font-size:22px; margin:10px 0; color:#6d1433; }
-    p{ font-size:18px; margin:5px 0; }
+    h1, h2 {
+      margin: 8px 0;
+      line-height: 1.35;
+      color: #7a2b56;
+      font-family: "El Messiri", "Tajawal", sans-serif;
+      letter-spacing: .2px;
+    }
+    h1 { font-size: 32px; }
+    h2 { font-size: 24px; color:#6a2149; }
+
+    p { font-size: 18px; margin: 6px 0; }
+
+    #intro{
+      font-family: "Tajawal", sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: var(--rose);
+      margin-bottom: 18px;
+    }
+
+    #countdown{ font-size: 20px; color: var(--rose); margin-top: 14px; font-weight: 700; }
 
     .btn{
-      display:inline-block; margin:10px; padding:10px 20px;
-      border-radius:10px; background:var(--rose); color:#fff;
-      text-decoration:none; font-size:16px; box-shadow:0 3px 6px rgba(0,0,0,0.2);
+      display:inline-block;
+      margin: 10px 8px;
+      padding: 12px 22px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #e94f8b, #d6336c);
+      color:#fff; text-decoration:none; font-size:16px; font-weight:600;
+      box-shadow: 0 6px 14px rgba(214, 51, 108, .25);
+      border: none;
+      transition: transform .12s ease, box-shadow .12s ease, filter .12s ease;
     }
-    .btn:hover{ background:var(--rose-dark); }
+    .btn:hover{ transform: translateY(-1px); filter: brightness(1.03); }
+    .btn:active{ transform: translateY(0); }
 
-    #musicControl{ margin-top:15px; cursor:pointer; font-size:16px; color:var(--rose); border:none; background:transparent; }
-    #intro{ font-size:20px; color:var(--rose); margin-bottom:20px; display:block; white-space:normal; }
-
-    .flower{ position:fixed; top:-50px; font-size:24px; animation:fall linear forwards; pointer-events:none; }
-    @keyframes fall{ to{ transform:translateY(110vh) rotate(360deg); opacity:0; } }
-
-    #countdown{ font-size:20px; color:var(--rose); margin-top:15px; font-weight:bold; }
+    #musicControl{
+      margin-top: 12px; cursor: pointer; font-size: 16px;
+      color: var(--rose); border: none; background: transparent; font-weight:700;
+    }
 
     .notice{
-      margin-top:25px; background:#ffe0ebdd; border:2px solid var(--rose); color:#6d1433;
-      padding:16px 18px; border-radius:14px; font-size:17px; line-height:1.7; font-weight:bold;
-      box-shadow:0 4px 10px rgba(0,0,0,0.15);
+      margin-top: 22px; background:#ffe5efcf; border:2px solid #e7a0bd;
+      color:#6d1433; padding:16px 18px; border-radius:14px; font-size:17px; line-height:1.7; font-weight:bold;
+      box-shadow:0 6px 14px rgba(0,0,0,0.08);
     }
-    .muted-hint{ font-size:13px; opacity:.7; margin-top:6px }
+    .muted-hint{ font-size: 13px; opacity:.7; margin-top:6px }
 
     /* شاشة السماح بالصوت على الجوال */
-    .gate{ position:fixed; inset:0; background:rgba(255,235,242,.8); display:none; place-items:center; z-index:10; }
+    .gate{ position:fixed; inset:0; background:rgba(255, 235, 242, .8); display:none; place-items:center; z-index:10; }
     .gate .in{ background:#fff; border:1px solid #e9c2cf; box-shadow:0 10px 24px rgba(0,0,0,.12); border-radius:16px; padding:18px 20px; }
+
+    /* ✨ بريق ذهبي أنيق */
+    .sparkle{
+      position:fixed; top:-12px; width:6px; height:6px; border-radius:50%;
+      pointer-events:none; z-index: 0;
+      background: radial-gradient(circle at 30% 30%, #fff 0%, #ffe7a1 35%, #e6c65c 60%, rgba(212,175,55,.0) 70%);
+      box-shadow: 0 0 8px rgba(212,175,55,.55), 0 0 2px rgba(255,255,255,.9) inset;
+      animation: fallSparkle linear forwards;
+      opacity:.95;
+    }
+    @keyframes fallSparkle {
+      to { transform: translateY(112vh) translateX(8px) scale(.9); opacity:0; }
+    }
   </style>
 </head>
 <body oncontextmenu="return false">
-  <!-- شاشة ترحيب لتشغيل الصوت على الجوال -->
+  <!-- شاشة ترحيب للصوت -->
   <div id="gate" class="gate"><div class="in">
     <div style="font-size:18px; margin-bottom:8px">مرحباً بك 🌸</div>
     <div style="font-size:14px; opacity:.8">اضغطي متابعة لتشغيل موسيقى الترحيب</div>
@@ -128,10 +167,9 @@
   </audio>
 
   <script>
-    /* ارفعي الرقم كل مرة تحدثين فيها التصميم لكسر الكاش */
-    const VERSION = '11';
+    /* كسر كاش */
+    const VERSION = '12';
 
-    // تأكيد تحميل الإصدار الجديد
     (function ensureFresh(){
       const p = new URLSearchParams(location.search);
       if(p.get('v') !== VERSION){ p.set('v', VERSION); location.replace(location.pathname + '?' + p.toString()); }
@@ -164,7 +202,6 @@
     const gate = document.getElementById('gate');
     const enterBtn = document.getElementById('enterBtn');
 
-    // كسر كاش لملف الصوت
     const ms = music.querySelector('source');
     ms.src = ms.src.split('?')[0] + '?v=' + VERSION;
 
@@ -180,13 +217,16 @@
       else { music.pause(); btn.textContent = "🎵 تشغيل الموسيقى"; }
     });
 
-    /* زهور متساقطة */
-    function createFlower(){ const f=document.createElement('div'); f.className='flower'; f.textContent='🌸';
-      f.style.left=Math.random()*window.innerWidth+'px';
-      f.style.animationDuration=(4+Math.random()*4)+'s';
-      document.body.appendChild(f); setTimeout(()=>f.remove(),8000);
+    /* ✨ بريق ذهبي أنيق */
+    function createSparkle(){
+      const s=document.createElement('div');
+      s.className='sparkle';
+      s.style.left=Math.random()*window.innerWidth+'px';
+      s.style.animationDuration=(3+Math.random()*3)+'s';
+      document.body.appendChild(s);
+      setTimeout(()=>s.remove(),6000);
     }
-    setInterval(createFlower, 1000);
+    setInterval(createSparkle, 850);
 
     /* العدّ التنازلي */
     const countdownEl = document.getElementById('countdown');
